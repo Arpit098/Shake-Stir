@@ -18,7 +18,6 @@ app.get('/public/:file',function(req,res){
 app.get('/', function(req, res) {
   res.sendFile(__dirname+'/views/index.html');
 });
-app.get('/home', function(req, res) {
 app.get('/Home', function(req, res) {
   res.sendFile(__dirname+'/views/index.html');
 });
