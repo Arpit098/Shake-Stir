@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Contact us</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <style>
+      * {
+      box-sizing: border-box;
+      }
+      html, body {
+      min-height: 100vh;
+      padding: 0;
+      margin: 0;
+      font-family: Roboto, Arial, sans-serif;
+      font-size: 14px; 
+      color: #666;
+      overflow:hidden;
+      }
+      input, textarea { 
+      outline: none;
+      }
+      body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      background: transparent;
+      }
+      h1 {
+      margin-top: 0;
+      font-weight: 500;
+      }
+      form {
+      position: relative;
+      width: 80%;
+      border-radius: 30px;
+      background: rgb(253, 242, 243);
+      }
+      .form-left-decoration,
+      .form-right-decoration {
+      content: "";
+      position: absolute;
+      width: 50px;
+      height: 20px;
+      border-radius: 20px;
+      background: transparent;
+      }
+      .form-left-decoration {
+      bottom: 60px;
+      left: -30px;
+      }
+      .form-right-decoration {
+      top: 60px;
+      right: -30px;
+      }
+      .form-left-decoration:before,
+      .form-left-decoration:after,
+      .form-right-decoration:before,
+      .form-right-decoration:after {
+      content: "";
+      position: absolute;
+      width: 50px;
+      height: 20px;
+      border-radius: 30px;
+      background: #fff;
+      }
+      .form-left-decoration:before {
+      top: -20px;
+      }
+      .form-left-decoration:after {
+      top: 20px;
+      left: 10px;
+      }
+      .form-right-decoration:before {
+      top: -20px;
+      right: 0;
+      }
+      .form-right-decoration:after {
+      top: 20px;
+      right: 10px;
+      }
+      .circle {
+      position: absolute;
+      bottom: 80px;
+      left: -55px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #fff;
+      }
+      .form-inner {
+      padding: 40px;
+      }
+      .form-inner input,
+      .form-inner textarea {
+      display: block;
+      width: 100%;
+      padding: 15px;
+      margin-bottom: 10px;
+      border: none;
+      border-radius: 20px;
+      background: #d0dfe8;
+      }
+      .form-inner textarea {
+      resize: none;
+      }
+      button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 20px;
+      border-radius: 20px;
+      border: none;
+      border-bottom: 4px solid #3e4f24;
+      background: black; 
+      font-size: 16px;
+      font-weight: 400;
+      color: #fff;
+      }
+      button:hover {
+      background: rgba(253,216,53,1);
+      color: black;
+      } 
+      @media (min-width: 568px) {
+      form {
+      width: 60%;
+      }
+      }
+    </style>
+  </head>
+  <body>
+    <form action="/submit" class="decor" id='popUpForm'>
+       <div class="form-left-decoration"></div>
+       <div class="form-right-decoration"></div>
+       <div class="circle"></div>
+       <div class="form-inner">
+           <h1 style="color: rgb(139, 87, 33)
+">Contact us</h1>
+           <input type="text" placeholder="Username" name="username" required>
+           <input type="email" placeholder="Email" name="email" required>
+           <input type="tel" placeholder="Phone Number" name="phone" required>
+           <textarea placeholder="Message..." name="message" rows="5"></textarea>
+           <button type="submit">Submit</button>
+           <button id="close">Close</button>
+       </div>
+    </form>
+    <script>
+    const form = document.querySelector('form');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+const popupForm = document.querySelector('#popUpForm');
+  // Collect form data
+  const formData = {
+        name: popupForm.querySelector('input[name="username"]').value,
+        email: popupForm.querySelector('input[name="email"]').value,
+        phone: popupForm.querySelector('input[name="phone"]').value,
+        message: popupForm.querySelector('textarea[name="message"]').value,
+      };
+console.log(formData);
+  // Send a POST request to the server
+  try {
+    const response = await fetch('/submit', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json', // Set the Content-Type header to indicate JSON data
+      },
+      body: JSON.stringify(formData),
+    });
+
+    if (response.ok) {
+      // Handle success
+      console.log('Form submitted successfully');
+    } else {
+      // Handle errors
+      console.error('Form submission failed');
+    }
+  } catch (error) {
+    console.error('An error occurred:', error);
+  }
+});
+    </script>
+    <script>
+    const closeButton = document.getElementById("close");
+    closeButton.addEventListener("click", function () {
+        // Send a message to the parent window to request popup closure
+        window.parent.postMessage("closePopupRequest", "*");
+        console.log("close");
+    });
+    </script>
+  </body>
+</html>
