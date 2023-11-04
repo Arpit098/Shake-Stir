@@ -18,11 +18,8 @@ app.get('/public/:file',function(req,res){
 app.get('/', function(req, res) {
   res.sendFile(__dirname+'/views/index.html');
 });
-<<<<<<< HEAD
 app.get('/home', function(req, res) {
-=======
 app.get('/Home', function(req, res) {
->>>>>>> 2f1be03be03ad9058f6839555fde691aa15a8a25
   res.sendFile(__dirname+'/views/index.html');
 });
 app.get('/services', function(req, res) {
