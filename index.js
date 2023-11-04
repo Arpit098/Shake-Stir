@@ -19,7 +19,7 @@ app.get('/', function(req, res) {
   res.sendFile(__dirname+'/views/index.html');
 });
 app.get('/home', function(req, res) {
-  res.sendFile(__dirname+'/views/index.html');
+  res.sendFile(__dirname+'/views/Home.html');
 });
 app.get('/services', function(req, res) {
   res.sendFile(__dirname+'/views/Services.html');
