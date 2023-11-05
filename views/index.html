@@ -2134,7 +2134,7 @@
                     // Popup has not been shown, display it
                     setTimeout(function () {
                         document.getElementById("popup").style.display = "block";
-                    }, 1000);
+                    }, 3000);
             
                     // Set a flag in local storage to indicate the popup has been shown
                     localStorage.setItem('popupShown', 'true');
@@ -2149,14 +2149,12 @@
                  if (formInIframe) {
                      formInIframe.addEventListener("submit", function (e) {
                          e.preventDefault();
-                         formInIframe.getElementById("popup").style.display = "none";
+                         document.getElementById("popup").style.display = "none";
                      });
                       const closeButton = formInIframe.querySelector("#close");
                      if (closeButton) {
                          closeButton.addEventListener("click", function (e) {
                              e.preventDefault();
-                             // Close the popup when the close button is clicked
-                             console.log('clos')
                              document.getElementById("popup").style.display = "none";
                          });
                  }

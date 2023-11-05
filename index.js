@@ -3,7 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 9000;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -18,7 +18,7 @@ app.get('/public/:file',function(req,res){
 app.get('/', function(req, res) {
   res.sendFile(__dirname+'/views/index.html');
 });
-app.get('/Home', function(req, res) {
+app.get('/home', function(req, res) {
   res.sendFile(__dirname+'/views/index.html');
 });
 app.get('/services', function(req, res) {
