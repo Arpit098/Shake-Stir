@@ -43,9 +43,33 @@ const transporter = nodemailer.createTransport({
   
     const mailOptions = {
       from: 'arpit298agrawal@gmail.com', // Replace with your SMTP username
-      to: email, // Replace with the recipient's email address
+      to: 'arpit298agrawal@gmail.com', // Replace with the recipient's email address
       subject: 'New Form Submission',
       text: `Name: ${name}\nEmail: ${email}\nPhone Number: ${phone}\nMessage: ${message}`,
+    };
+    const mailOptions2 = {
+      from: 'arpit298agrawal@gmail.com', // Replace with your SMTP username
+      to: email, // Replace with the recipient's email address
+      subject: 'Thank You for Contacting Shake and Stir Hospitality',
+      html: <p style=" text-align:left, font-family: sans-serif;">
+      Dear Customer,
+      
+      We hope this message finds you well. Thank you for getting in touch with Shake and Stir Hospitality! Your interest in our beverage catering services means a lot to us.
+      
+      Our dedicated team is already hard at work reviewing your inquiry, and we'll be reaching out to you shortly to discuss your requirements and answer any questions you may have. We're excited about the opportunity to create a memorable beverage experience for your event.
+      
+      In the meantime, we invite you to explore our Instagram page (@_shakeandstir) to get a glimpse of our beverage creations, behind-the-scenes moments, and the events we've had the pleasure of being a part of. It's a great way to stay updated with our latest offerings and be inspired by our craft.
+      
+      Once again, thank you for considering Shake and Stir Hospitality for your beverage catering needs. We're committed to delivering exceptional service and helping you craft the perfect drinks for your special occasion.
+      
+      If you have any immediate questions or need further assistance, please don't hesitate to contact us at +91-9111143460.
+      
+      Cheers to a future of delightful beverages and memorable moments!
+      
+      Warm regards,
+      
+      Shake and Stir Hospitality Team`,
+      </p>
     };
   
     transporter.sendMail(mailOptions, (error, info) => {
@@ -54,7 +78,16 @@ const transporter = nodemailer.createTransport({
         res.status(500).send('Email could not be sent.');
       } else {
         console.log('Email sent: ' + info.response);
-        res.status(200).send('Email sent successfully.');
+        res.status(200).send('Email sent successfully to self.');
+      }
+    });
+    transporter.sendMail(mailOptions2, (error, info) => {
+      if (error) {
+        console.log(error);
+        res.status(500).send('Email could not be sent.');
+      } else {
+        console.log('Email sent: ' + info.response);
+        res.status(200).send('Email sent successfully to the user.');
       }
     });
   });
