@@ -33,8 +33,8 @@ const transporter = nodemailer.createTransport({
     port: 587, // Replace with the SMTP port (587 for TLS, 465 for SSL)
     secure: false, // true for 465, false for other ports
     auth: {
-      user: 'arpit298agrawal@gmail.com', // Replace with your SMTP username
-      pass: 'fcby xmqx rmkx ubiz', // Replace with your SMTP password
+      user: 'support@shakeandstir.in', // Replace with your SMTP username
+      pass: 'zasy toxf wvez pevz', // Replace with your SMTP password
     },
   });
   
@@ -42,16 +42,16 @@ const transporter = nodemailer.createTransport({
     const { name, email, phone, message } = req.body;
   
     const mailOptions = {
-      from: 'arpit298agrawal@gmail.com', // Replace with your SMTP username
-      to: 'arpit298agrawal@gmail.com', // Replace with the recipient's email address
+      from: 'support@shakeandstir.in', // Replace with your SMTP username
+      to: 'support@shakeandstir.in', // Replace with the recipient's email address
       subject: 'New Form Submission',
       text: `Name: ${name}\nEmail: ${email}\nPhone Number: ${phone}\nMessage: ${message}`,
     };
     const mailOptions2 = {
-      from: 'arpit298agrawal@gmail.com', // Replace with your SMTP username
+      from: 'support@shakeandstir.in', // Replace with your SMTP username
       to: email, // Replace with the recipient's email address
       subject: 'Thank You for Contacting Shake and Stir Hospitality',
-      html: <p style=" text-align:left, font-family: sans-serif;">
+      text: `
       Dear Customer,
       
       We hope this message finds you well. Thank you for getting in touch with Shake and Stir Hospitality! Your interest in our beverage catering services means a lot to us.
@@ -69,7 +69,6 @@ const transporter = nodemailer.createTransport({
       Warm regards,
       
       Shake and Stir Hospitality Team`,
-      </p>
     };
   
     transporter.sendMail(mailOptions, (error, info) => {
